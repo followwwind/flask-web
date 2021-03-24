@@ -31,3 +31,4 @@ def cors(resp):
     resp.headers.add('Access-Control-Allow-Origin', '*')
     resp.headers.add('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept')
     resp.headers.add('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, HEAD')
+    return resp
