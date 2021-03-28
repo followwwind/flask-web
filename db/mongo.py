@@ -5,6 +5,7 @@
 @desc: mongodb client
 """
 import pymongo
+from bson import ObjectId
 
 
 class MongoClient(object):
@@ -50,6 +51,11 @@ class MongoClient(object):
         result = self.get_collection(collection).remove(document)
         return result
 
+    def delete_one(self, collection, document):
+        """移除数据"""
+        result = self.get_collection(collection).delete_one({"_id": ObjectId(document['_id'])})
+        return result
+
     def update(self, collection, document):
         """更新数据"""
         result = self.get_collection(collection).update({"_id": document['_id']}, document)
@@ -78,11 +84,11 @@ class MongoClient(object):
 
 if __name__ == '__main__':
     opts = {
-        "host": "118.193.37.106",
+        "host": "localhost",
         "port": 27017,
-        "db": "lilingzhi",
-        "user": "db33",
-        "password": "jp_123"
+        "db": "test",
+        "user": "test",
+        "password": "123456"
     }
     client = MongoClient(**opts)
     all_collection = client.get_all_collection()

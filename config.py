@@ -27,11 +27,16 @@ log = init_log(None, "server")
 
 # 数据库
 db = MongoClient(**{
-    "host": "118.193.37.106",
-    "port": "27017",
-    "db": "",
-    "user": "user1",
-    "password": "789789"
+    # "host": "118.193.37.106",
+    # "port": 27017,
+    # "db": "",
+    # "user": "user1",
+    # "password": "789789"
+    "host": "localhost",
+    "port": 27017,
+    "db": "test",
+    "user": "test",
+    "password": "123456"
 })
 
 

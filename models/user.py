@@ -18,7 +18,7 @@ class UserModel(object):
             'password': password,
             'assert_id': ''
         }
-        db.inert_one('user', user)
+        db.insert_one('user', user)
 
     @staticmethod
     def bind_assert(_id, assert_id):
@@ -36,4 +36,4 @@ class UserModel(object):
         doc = db.query_one('user', user)
         if not doc:
             return Response({})
-        return Response(_id=doc['_id'], username=doc['username'], password=doc['password'], assertId=doc['assert_id'])
+        return Response(_id=str(doc['_id']), username=doc['username'], password=doc['password'], assertId=doc['assert_id'])

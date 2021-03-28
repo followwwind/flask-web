@@ -10,22 +10,24 @@ from config import api
 from message.decorator import Response
 from message.http_code import get_result
 from message.response import JsonResult
-from message.request import get_json
+from message.request import get_json, get_arg
 from operations.account import AccountOperation
 
 
-class User(Resource):
+class Account(Resource):
 
     @staticmethod
     @JsonResult.success(data=dict)
     @AccountOperation.list(account=dict, page_num=int, page_size=int)
     def get():
-        json = get_json()
-        query = {
-            'exchange': json.get('exchange', '')
-        }
-        page_num = int(json.get('pageNum', 1))
-        page_size = int(json.get('pageSize', 1))
+        exchange = get_arg('exchange', '')
+        query = {}
+        if exchange != '':
+            query = {
+                'exchange': exchange
+            }
+        page_num = int(get_arg('pageNum', 1))
+        page_size = int(get_arg('pageSize', 10))
         return Response(account=query, page_num=page_num, page_size=page_size)
 
     @staticmethod
@@ -75,4 +77,4 @@ class User(Resource):
 
 
 ns = api.namespace('api/account', 'account')
-ns.add_resource(User, '/')
+ns.add_resource(Account, '/')

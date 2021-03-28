@@ -13,13 +13,13 @@ class JsonResult(object):
 
     @staticmethod
     @make_decorator
-    def success(result):
-        return get_result(200, None, result), 200
+    def success(data):
+        return get_result(200, None, data), 200
 
     @staticmethod
     @make_decorator
-    def result(code, msg, result):
-        return get_result(code, msg, result), 200
+    def result(code, msg, data):
+        return get_result(code, msg, data), 200
 
 
 

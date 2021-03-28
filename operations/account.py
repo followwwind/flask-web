@@ -32,8 +32,6 @@ class AccountOperation(object):
     @staticmethod
     @make_decorator
     def list(account, page_num, page_size):
-        if not account:
-            abort(400, **get_result(code=400, msg='参数错误'))
         page = AccountModel.list(account, page_num, page_size)
         return Response(data=page)
 

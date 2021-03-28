@@ -21,11 +21,11 @@ def make_decorator(f):
         values = {}
         for name in params:
             type = params[name]
-        try:
-            isinstance(0, type)
-            restriction.update({name: type})
-        except:
-            values.update({name: type})
+            try:
+                isinstance(0, type)
+                restriction.update({name: type})
+            except:
+                values.update({name: type})
 
         def accept_func(func):
 
