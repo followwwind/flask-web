@@ -40,10 +40,14 @@ class AssertOperation(object):
     @staticmethod
     @make_decorator
     def list(assert_info, page_num, page_size):
-        if not assert_info:
-            abort(400, **get_result(code=400, msg='参数错误'))
         page = AssertInfoModel.list(assert_info, page_num, page_size)
         return Response(data=page)
+
+    @staticmethod
+    @make_decorator
+    def line(num, page_num, page_size):
+        data = AssertInfoModel.line(num, page_num, page_size)
+        return Response(data=data)
 
     @staticmethod
     @make_decorator

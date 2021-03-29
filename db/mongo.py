@@ -81,6 +81,11 @@ class MongoClient(object):
         result = list(self.get_collection(collection).find(document).limit(limit).skip(offset))
         return result
 
+    def query_search_page_sort(self, collection, document, limit, offset, sort):
+        """查找总数"""
+        result = list(self.get_collection(collection).find(document).limit(limit).skip(offset).sort(sort))
+        return result
+
 
 if __name__ == '__main__':
     opts = {

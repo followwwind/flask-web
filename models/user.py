@@ -16,7 +16,9 @@ class UserModel(object):
         user = {
             'username': username,
             'password': password,
-            'assert_id': ''
+            'real_value_all': 0.00,
+            'profit': 0.00,
+            'profit_pct': 0.00
         }
         db.insert_one('user', user)
 
@@ -36,4 +38,5 @@ class UserModel(object):
         doc = db.query_one('user', user)
         if not doc:
             return Response({})
-        return Response(_id=str(doc['_id']), username=doc['username'], password=doc['password'], assertId=doc['assert_id'])
+        return Response(_id=str(doc['_id']), username=doc['username'], password=doc['password'],
+                        realValueAll=doc['real_value_all'], profit=doc['profit'], profitPct=doc['profit_pct'])
